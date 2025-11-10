@@ -1,4 +1,5 @@
 ---
+// src/pages/contact.astro (full file)
 import BaseLayout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.tsx';
 ---
@@ -6,7 +7,7 @@ import ContactForm from '../components/ContactForm.tsx';
   <section class="relative py-24 bg-blue-50 dark:bg-blue-900/20 border-b border-gray-100 dark:border-gray-700 overflow-hidden">
     <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-   
+
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="inline-block mb-6 px-4 py-2 bg-blue-100 dark:bg-blue-800/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold">
         📬 Get In Touch
@@ -15,86 +16,20 @@ import ContactForm from '../components/ContactForm.tsx';
         Let's Transform Health Together
       </h1>
       <p class="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
-        Whether you're a health facility looking to adopt the <strong class="text-blue-900 dark:text-blue-400">Afrodoctor HMS</strong> or a partner seeking collaboration, we're ready to connect.
+        Whether you're a health facility looking to adopt the <strong class="text-blue-900 dark:text-blue-300">Afrodoctor HMS</strong> or a partner seeking collaboration, we're ready to connect.
       </p>
     </div>
   </section>
 
   <section class="py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
-     
-      <div id="inquiry">
+
+      <!-- LEFT COLUMN: Form + Quick Response (moved here) -->
+      <div id="inquiry" class="space-y-8">
         <ContactForm client:load />
-      </div>
 
-      <div class="space-y-8">
-       
-        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-blue-900 dark:bg-blue-800 p-10 rounded-3xl shadow-2xl overflow-hidden">
-          <div class="absolute inset-0 bg-blue-800 dark:bg-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-         
-          <div class="relative z-10">
-            <div class="flex items-center mb-6">
-              <div class="w-16 h-16 bg-white/20 dark:bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mr-4">
-                <span class="text-5xl">❤️</span>
-              </div>
-              <h2 class="text-3xl font-bold text-white">Support Our Mission</h2>
-            </div>
-           
-            <p class="text-white/90 mb-8 text-lg leading-relaxed">
-              Your contribution helps us expand access to quality health services in underserved communities across East Africa through training, mentorship, and provision of digital gadgets.
-            </p>
-           
-            <a
-              id="donate"
-              href="mailto:donations@hsv.co.ug?subject=Donation%20to%20HSV"
-              class="group/btn inline-flex items-center justify-center w-full py-4 px-8 text-lg font-bold rounded-2xl text-blue-600 bg-white hover:bg-blue-50 dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl"
-              aria-label="Donate now"
-            >
-              DONATE NOW
-              <span class="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-10 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-            <span class="text-3xl mr-3">📍</span>
-            Our Details
-          </h3>
-          <ul class="space-y-5">
-            <li class="flex items-start group">
-              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-300">
-                <span class="text-blue-600 dark:text-blue-300 text-xl">📧</span>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Email Us</p>
-                <a href="mailto:info@hsv.co.ug" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors duration-300">info@hsv.co.ug</a>
-              </div>
-            </li>
-           
-            <li class="flex items-start group">
-              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-300">
-                <span class="text-blue-600 dark:text-blue-300 text-xl">📍</span>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Visit Us</p>
-                <p class="text-gray-700 dark:text-gray-300 font-medium">HSV Regional Headquarters<br/>Kampala, Uganda</p>
-              </div>
-            </li>
-           
-            <li class="flex items-start group">
-              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors duration-300">
-                <span class="text-blue-600 dark:text-blue-300 text-xl">📞</span>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Call Us</p>
-                <a href="tel:+256700123456" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors duration-300">+256 700 123 456</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-       
-        <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 dark:border-blue-400 p-6 rounded-r-2xl">
+        <!-- Quick Response Time card (moved under form, spaced nicely) -->
+        <div class="mt-12 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 dark:border-blue-400 p-6 rounded-r-2xl">
           <div class="flex items-center">
             <span class="text-3xl mr-3">⚡</span>
             <div>
@@ -103,6 +38,79 @@ import ContactForm from '../components/ContactForm.tsx';
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Donate / Narrative card -->
+      <div class="space-y-8">
+
+        <!-- Donate / Narrative card (dark-theme friendly) -->
+        <div
+          id="donate"
+          class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-white dark:bg-gray-800 p-10 rounded-3xl overflow-hidden shadow-lg"
+        >
+          <!-- subtle overlay tuned for both light & dark -->
+          <div class="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+            <div class="hidden dark:block absolute inset-0 bg-gradient-to-b from-blue-900/10 to-transparent"></div>
+            <div class="block dark:hidden absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent"></div>
+          </div>
+
+          <div class="relative z-10">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-blue-50 dark:bg-blue-800/20 rounded-2xl flex items-center justify-center mr-4">
+                <span class="text-4xl">❤️</span>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Donate — Support Capacity Building</h2>
+            </div>
+
+            <!-- Narrative content -->
+            <div class="prose prose-lg dark:prose-invert text-gray-700 dark:text-gray-200 mb-6 max-w-none">
+              <p>
+                In our pursuit of equitable access to quality health services, we encountered challenges in reaching and including several vulnerable groups who are in great need but at high risk of being left out. These groups include young women and persons with disabilities (PWDs).
+              </p>
+
+              <p>
+                National reports have highlighted gaps in health service access within traditional health systems for these groups — including physical accessibility hurdles, lack of inclusivity, discrimination, lack of privacy, and fear of judgement — which puts them at an increased risk of being left out, yet they need quality health services as others do.
+              </p>
+
+              <p>
+                Novel and context-specific digital innovations such as the Afrodoctor mobile application and Afrodoctor HMS software can help bridge the health system gaps mentioned. However, these populations also face additional individual challenges to access quality health services, including inadequate knowledge and skills in using digital platforms, lack of digital gadgets, and poverty which limits their ability to purchase data bundles and engage meaningfully with the health system.
+              </p>
+
+              <p>
+                At the Afrodoctor Foundation, we address these individual barriers by building digital skills and health utilization capacity among young women and PWDs, and by providing internet connectivity and devices to these vulnerable groups.
+              </p>
+
+              <p>
+                When you donate, you support the scaling up of training, provision of digital gadgets, and mobile data to these groups. You also enable free medical appointment booking and consultations for people in great need who cannot afford services.
+              </p>
+            </div>
+
+            <!-- CTA buttons (email + phone) -->
+            <div class="grid gap-3 sm:flex sm:items-center sm:gap-4">
+              <a
+                href="mailto:info@afrodoctor.org?subject=Donation%20to%20Afrodoctor%20Foundation"
+                class="group/btn inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 text-lg font-semibold rounded-2xl text-white bg-blue-700 hover:bg-blue-800 transition transform hover:scale-[1.02] shadow"
+                aria-label="Donate via email"
+              >
+                Email to Donate
+                <span class="ml-2">→</span>
+              </a>
+
+              <a
+                href="tel:+256709784058"
+                class="inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 text-lg font-semibold rounded-2xl border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-white bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition"
+                aria-label="Call to donate"
+              >
+                Call: +256 709 784 058
+              </a>
+            </div>
+
+            <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+              To help these groups and support our work, email <a class="text-blue-700 dark:text-blue-300 font-medium" href="mailto:info@afrodoctor.org">info@afrodoctor.org</a> or call <a class="text-blue-700 dark:text-blue-300 font-medium" href="tel:+256709784058">+256 709 784 058</a>.
+            </p>
+          </div>
+        </div>
+
 
       </div>
     </div>
@@ -116,12 +124,18 @@ import ContactForm from '../components/ContactForm.tsx';
     33% { transform: translate(30px, -50px) scale(1.1); }
     66% { transform: translate(-20px, 20px) scale(0.9); }
   }
- 
+
   .animate-blob {
     animation: blob 7s infinite;
   }
- 
+
   .animation-delay-2000 {
     animation-delay: 2s;
+  }
+
+  /* prose styling for narrative paragraphs when Tailwind typography plugin isn't present */
+  .prose p { margin: 0 0 1rem; }
+  @media (min-width: 768px) {
+    .prose { font-size: 1.03rem; line-height: 1.6; }
   }
 </style>
