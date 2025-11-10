@@ -1,0 +1,107 @@
+---
+/*
+  projects/immersed/index.astro (UPDATED)
+  - Expanded from gallery to full Immersed project page
+  - Three sections: Young Women, Persons with Disabilities, Community Health Champions
+  - Uses existing images as placeholders; keeps ImmersedGallery for the gallery block
+*/
+import BaseLayout from '../layouts/Layout.astro';
+import ImmersedGallery from '../components/ImmersedGallery.tsx';
+---
+
+<BaseLayout title="Immersed — Community Health Champions">
+  <!-- Hero / Intro -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-blue-800 to-blue-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Immersed — Community Health Champions</h1>
+      <p class="max-w-3xl mx-auto text-lg text-white/90">
+        Immersed is our capacity building programme — training young women, persons with disabilities, and community health champions on digital health and sexual & reproductive health so they can support local communities.
+      </p>
+    </div>
+  </section>
+
+  <main class="py-16 md:py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+
+      <!-- Young Women -->
+      <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Young Women Training</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            We train young women in digital skills, telehealth tools, and sexual & reproductive health so they can access work opportunities and help their communities.
+          </p>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+            <li>• Practical hands-on sessions using the Afrodoctor app</li>
+            <li>• Digital literacy, mentorship and certificate on completion</li>
+            <li>• Career pathways: peer educator, telehealth operator</li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <img src="/images/immersed/DSC_0132.JPG" alt="Young women learning telehealth tools" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+          <img src="/images/immersed/DSC_0133.JPG" alt="Certificate presentation" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+        </div>
+      </section>
+
+      <!-- Persons with Disabilities -->
+      <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="order-2 md:order-1">
+          <div class="grid grid-cols-2 gap-4">
+            <img src="/images/immersed/DSC_0114.JPG" alt="Accessible training for persons with disabilities" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+            <img src="/images/immersed/DSC_0128.JPG" alt="Group discussion" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <div class="order-1 md:order-2">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Inclusive Training for Persons with Disabilities</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            We adapt our training to be inclusive and accessible — tailoring content and formats so persons with disabilities can fully participate and become health champions.
+          </p>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+            <li>• Accessibility-first materials and support</li>
+            <li>• Assistive technology demonstrations and practical sessions</li>
+            <li>• Community outreach roles & leadership opportunities</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Community Health Champions -->
+      <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Community Health Champions</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Building local capacity means training representatives who can provide first-line support, triage, and referrals — strengthening the local health system from the ground up.
+          </p>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+            <li>• Outreach & health education campaigns</li>
+            <li>• Referral coordination with local facilities</li>
+            <li>• Data collection and community-level monitoring</li>
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <img src="/images/immersed/DSC_0140.JPG" alt="Community outreach" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+          <img src="/images/immersed/DSC_0251.JPG" alt="Cohort photo" class="w-full h-44 object-cover rounded-2xl shadow-lg" loading="lazy" decoding="async" />
+        </div>
+      </section>
+
+      <!-- Gallery & Highlights -->
+      <section>
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Immersed — In-action Gallery</h3>
+          <a href="/contact" class="text-sm text-blue-800 dark:text-blue-400 underline">Request training</a>
+        </div>
+
+        <ImmersedGallery client:load />
+      </section>
+
+      <!-- Read more / call to action -->
+      <section class="text-center py-6">
+        <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Want to partner with Immersed?</h4>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">We work with funders, universities and health providers to scale training programmes. Reach out and we'll share impact reports and partnership models.</p>
+        <a href="/contact" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 text-white rounded-xl font-semibold shadow-md">Partner with Immersed</a>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>

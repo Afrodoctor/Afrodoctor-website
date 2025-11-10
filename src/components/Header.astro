@@ -1,0 +1,152 @@
+---
+// Header.astro (full file)
+// - Theme-aware nav while over hero: links become white for visibility while the hero is visible.
+// - "Solutions" renamed to "Home". Added "News".
+// - Mobile menu updated accordingly.
+const pathname = Astro.url.pathname || '/';
+
+const activeClass = "text-blue-600 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:rounded-full";
+const defaultClass = "text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 relative hover:after:w-full after:w-0 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 after:rounded-full";
+
+const getLinkClass = (href: string) => {
+  // server-side active matching (keeps server-rendered active state)
+  if (href === '/' && pathname === '/') return activeClass;
+  if (href.startsWith('/#')) return defaultClass;
+  if (href !== '/' && pathname.startsWith(href)) return activeClass;
+  return defaultClass;
+};
+---
+<header class="fixed top-0 left-0 right-0 z-50" data-header>
+  <div id="headerBar" class={`w-full transition-colors duration-300 ${pathname === '/' ? 'bg-transparent' : 'bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-700'} backdrop-blur-md`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-3 group" aria-label="Afrodoctor home">
+        <img src="/images/logos/afrodoctor.png" alt="Afrodoctor logo" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
+        <span class="hidden sm:inline-block font-bold text-red-600 text-lg tracking-wide">AFRODOCTOR</span>
+      </a>
+
+      <nav id="primaryNav" class="hidden md:flex items-center space-x-8" aria-label="Primary navigation">
+        <!-- each anchor keeps server-side classes; JS toggles .nav--over-hero for contrast on homepage -->
+        <a href="/" class={`nav-link ${getLinkClass('/')}`} data-nav>Home</a>
+        <a href="/news" class={`nav-link ${getLinkClass('/news')}`} data-nav>News</a>
+        <a href="/#impact" class={`nav-link ${getLinkClass('/#impact')}`} data-nav>Impact</a>
+        <a href="/about" class={`nav-link ${getLinkClass('/about')}`} data-nav>About Us</a>
+        <a href="/contact" class={`nav-link ${getLinkClass('/contact')}`} data-nav>Contact</a>
+        <a href="/contact#donate" class="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 shadow-sm text-sm">DONATE</a>
+      </nav>
+
+      <div class="md:hidden">
+        <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" class="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-lg transition-colors duration-300">
+          <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl">
+      <div class="px-6 pt-6 pb-8 space-y-1">
+        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+          <span class="font-bold text-red-600 text-lg tracking-wide">AFRODOCTOR</span>
+        </div>
+
+        <a href="/" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Home</a>
+        <a href="/news" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">News</a>
+        <a href="/#impact" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Impact</a>
+        <a href="/about" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">About Us</a>
+        <a href="/contact" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Contact</a>
+
+        <a href="/contact#donate" class="block mt-4 py-3 px-6 rounded-xl text-center bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 shadow-sm">DONATE</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" is:inline>
+    // Mobile menu (unchanged)
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('icon-open');
+    const closeIcon = document.getElementById('icon-close');
+    btn && btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (menu && !menu.classList.contains('hidden') && !menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+
+    // Theme-aware link contrast while hero is visible (only applies on homepage '/')
+    (function () {
+      const isHome = location.pathname === '/';
+      if (!isHome) return; // only on homepage we make links white while hero is visible
+
+      const hero = document.querySelector('[data-hero]') || document.getElementById('slidesWrapper') || document.querySelector('main section'); // fallback
+      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+      const headerBar = document.getElementById('headerBar');
+
+      // we add/remove a class to nav links for the over-hero state
+      const setOverHero = (over) => {
+        navLinks.forEach(a => {
+          if (over) {
+            // make links white for visibility
+            a.classList.add('text-white', 'hover:text-white', 'after:hidden');
+            // remove any theme color classes that conflict (a conservative approach)
+            a.classList.remove('text-gray-700', 'dark:text-gray-300', 'text-blue-600', 'font-semibold');
+          } else {
+            // restore server-rendered classes by reloading className from dataset if present
+            a.classList.remove('text-white', 'hover:text-white', 'after:hidden');
+            // we won't attempt to perfectly restore every server class; the server-side getLinkClass already emitted base styles
+          }
+        });
+
+        // header background tweak: keep transparent when over hero, else show opaque
+        if (over) {
+          headerBar.classList.add('bg-transparent');
+          headerBar.classList.remove('bg-white/90', 'dark:bg-gray-900/90');
+        } else {
+          headerBar.classList.remove('bg-transparent');
+          headerBar.classList.add('bg-white/90', 'dark:bg-gray-900/90');
+        }
+      };
+
+      // if there's no hero found, do nothing
+      if (!hero) return;
+
+      // compute hero bottom threshold
+      const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const check = () => {
+        const rect = hero.getBoundingClientRect();
+        // consider hero visible if its bottom is > header height + 10 px
+        const headerHeight = document.querySelector('[data-header]')?.clientHeight || 80;
+        const overHero = rect.bottom - headerHeight > 10;
+        setOverHero(overHero);
+      };
+
+      // initial check (run after a small timeout so hero finishes rendering)
+      setTimeout(check, 60);
+
+      // throttle
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          check();
+          ticking = false;
+        });
+      }, { passive: true });
+
+      // also on resize
+      window.addEventListener('resize', check);
+    })();
+  </script>
+</header>

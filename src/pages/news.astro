@@ -1,0 +1,67 @@
+---
+/*
+  news.astro - News index page
+  - Uses BaseLayout (Header/Footer) so header behavior is consistent
+  - Static sample articles (replace with your CMS/data later)
+*/
+import BaseLayout from '../layouts/Layout.astro';
+
+const articles = [
+  {
+    title: 'Afrodoctor launches HMS pilot in two regional clinics',
+    date: '2025-09-18',
+    excerpt: 'Pilot introduces cloud-synced records, streamlined referrals and integrated appointment booking across facilities.',
+    image: '/images/immersed/DSC_0139.JPG',
+    href: '/news/afrodoctor-hms-pilot',
+  },
+  {
+    title: 'Immersed project trains 100+ community health champions',
+    date: '2025-07-04',
+    excerpt: 'The Immersed program completed its second cohort focused on digital skills and SRH knowledge.',
+    image: '/images/immersed/DSC_0082.JPG',
+    href: '/news/immersed-cohort-2',
+  },
+  {
+    title: 'Afrodoctor partners with Kenyatta University on telehealth research',
+    date: '2025-06-10',
+    excerpt: 'A collaborative research agreement will explore remote diagnostics and impact on referral times.',
+    image: '/images/immersed/DSC_0103.JPG',
+    href: '/news/kenyatta-partnership',
+  },
+];
+---
+<BaseLayout title="News">
+  <section class="py-20 md:py-28 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">News & Updates</h1>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Latest news about our programs, deployments, research partnerships and community projects.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {articles.map(article => (
+          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300">
+            <a href={article.href} class="block">
+              <div class="h-48 w-full overflow-hidden">
+                <img src={article.image} alt={article.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+              </div>
+              <div class="p-6">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">{new Date(article.date).toLocaleDateString()}</p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{article.title}</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{article.excerpt}</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-blue-700 dark:text-blue-300 font-semibold">Read more →</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-400">{/* placeholder for author or tag */}</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/contact" class="inline-flex items-center px-6 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-xl shadow-md transition transform hover:scale-[1.02]">Contact Us about Coverage</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

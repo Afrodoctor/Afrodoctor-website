@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/Layout.astro';
+import ProductCatalogAdmin from '../components/ProductCatalogAdmin.tsx';
+---
+<BaseLayout title="Admin Panel">
+    <section class="py-16 bg-gray-100 dark:bg-gray-900 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Load the React component, required for Firebase and state management -->
+            <ProductCatalogAdmin client:only="react" />
+        </div>
+    </section>
+</BaseLayout>

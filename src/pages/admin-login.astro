@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/Layout.astro';
+import Login from '../components/Login.tsx';
+---
+<BaseLayout title="Admin Login">
+    <section class="py-16 bg-white dark:bg-gray-900 min-h-screen flex items-center justify-center transition-colors duration-300">
+        <div class="w-full max-w-md">
+            <Login client:load />
+        </div>
+    </section>
+</BaseLayout>

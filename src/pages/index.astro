@@ -1,0 +1,268 @@
+---
+/*
+  index.astro (full homepage)
+  - imports updated Header & HeroCarousel
+  - CTA now points to /afrodoctor-app
+  - "View Full Immersed Gallery" updated to "Explore Immersed"
+  - Partner logos sizes kept as requested
+*/
+import BaseLayout from '../layouts/Layout.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import PricingCard from '../components/PricingCard.tsx';
+
+const hmsPlans = [
+  { name: "Clinic Essential", price: "$499", features: ["5 User Accounts", "Basic Scheduling", "Patient Records (Local)", "Standard Support"], isPrimary: false },
+  { name: "Regional System Pro", price: "$1,999", features: ["Unlimited Users", "Advanced Referral Systems", "Digital Records (Cloud Sync)", "24/7 Priority Support", "Afrodoctor App Integration"], isPrimary: true },
+  { name: "Enterprise Custom", price: "Contact", features: ["Dedicated Servers", "Custom Integrations", "On-Site Training", "Multi-Region Compliance"], isPrimary: false },
+];
+
+const currentYear = new Date().getFullYear();
+---
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <HeroCarousel />
+
+  <!-- Solutions section (kept intact, id remains #solutions for anchors) -->
+  <section id="solutions" class="py-20 md:py-28 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          Expanding Digital Access to Health Care Services
+        </h2>
+        <div class="w-24 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-white dark:bg-gray-800 p-10 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-4xl" aria-hidden="true">📱</span>
+            </div>
+
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-800 dark:group-hover:text-blue-600 transition-colors duration-300">
+              Afrodoctor Mobile Application
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+              Linking patients to needed health services, drastically reducing indirect costs of travel and lodging, and eliminating fraud risk. This is the consumer-facing side of our ecosystem.
+            </p>
+
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start group/item">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Secure medical appointment booking with vetted health workers</span>
+              </li>
+
+              <li class="flex items-start group/item">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Real-time online consultations via video or chat</span>
+              </li>
+
+              <li class="flex items-start group/item">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Digital access to complete medical records and history</span>
+              </li>
+
+              <li class="flex items-start group/item">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Integrated payment and insurance information management</span>
+              </li>
+            </ul>
+
+            <!-- Changed: now points to the Afrodoctor App page -->
+            <a href="/afrodoctor-app" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group/btn inline-flex items-center text-sm" aria-label="Learn more about Afrodoctor app">
+              Learn More — Afrodoctor App
+              <span class="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-white dark:bg-gray-800 p-10 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          <div class="relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-4xl" aria-hidden="true">🏥</span>
+            </div>
+
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-800 dark:group-hover:text-blue-600 transition-colors duration-300">
+              Afrodoctor Hospital Management System
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
+              The backbone for health workers, enabling facility management, schedule organization, streamlined patient care pathways, and seamless referrals across the health network.
+            </p>
+
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Universal patient scheduling and resource organization</span>
+              </li>
+
+              <li class="flex items-start">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Streamlined, transparent referral systems between facilities</span>
+              </li>
+
+              <li class="flex items-start">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Reduces need for excessive facility-specific IT investment</span>
+              </li>
+
+              <li class="flex items-start">
+                <div class="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                  <svg class="w-4 h-4 text-blue-800 dark:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Communicates directly with the Afrodoctor mobile application</span>
+              </li>
+            </ul>
+
+            <a href="#plans" class="inline-flex items-center text-blue-800 dark:text-blue-600 font-semibold hover:text-blue-900 dark:hover:text-blue-500 group-hover:gap-2 transition-all duration-300" aria-label="See HMS plans">
+              Check Our HMS Plans Below
+              <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section id="plans" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          Afrodoctor HMS Plans for Health Facilities
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Tailored solutions for every size of health provider, from small clinics to large regional systems.
+        </p>
+        <div class="w-24 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {hmsPlans.map(plan => (
+          <PricingCard client:load
+            name={plan.name}
+            price={plan.price}
+            features={plan.features}
+            isPrimary={plan.isPrimary}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section id="impact" class="py-20 md:py-28 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          Building Capacity: The Immersed – Project
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Training communities in digital skills and sexual & reproductive health to create local health champions.
+        </p>
+        <div class="w-24 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full mt-6"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-10 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-blue-400/10 dark:bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 text-center">
+            <p class="text-6xl md:text-7xl font-extrabold text-blue-800 mb-3">26</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-lg">Young Women Trained</p>
+          </div>
+        </div>
+
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-10 bg-red-50 dark:bg-red-900/10 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-red-400/10 dark:bg-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 text-center">
+            <p class="text-6xl md:text-7xl font-extrabold text-red-700 mb-3">86</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-lg">Persons with Disabilities Trained</p>
+          </div>
+        </div>
+
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-10 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-blue-400/10 dark:bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 text-center">
+            <p class="text-6xl md:text-7xl font-extrabold text-blue-800 mb-3">100+</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-lg">Community Health Champions</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-5xl mx-auto">
+        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Immersed — In-action Highlights</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+          <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 1">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            <img src="/images/immersed/DSC_0082.JPG" alt="Immersed training group" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+          </a>
+
+          <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 2">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            <img src="/images/immersed/DSC_0105.JPG" alt="Participant using mobile" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+          </a>
+
+          <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 3">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            <img src="/images/immersed/DSC_0139.JPG" alt="Instructor demonstrating" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+          </a>
+        </div>
+
+        <div class="text-center">
+          <!-- Updated button text -->
+          <a href="/immersed" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center px-8 py-4 rounded-2xl" aria-label="Explore the Immersed project">
+            Explore Immersed
+            <span class="ml-2">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-20 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-10">In Partnership With:</h3>
+        <div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-8">
+          <!-- Partner logos kept at the sizes you specified -->
+          <img src="/images/partners/USAID.png" alt="USAID" class="h-28 md:h-32 lg:h-46 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+          <img src="/images/partners/yali2.png" alt="Young African Leaders Initiative (YALI)" class="h-28 md:h-32 lg:h-40 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+          <img src="/images/partners/kenyatta-university.png" alt="Kenyatta University" class="h-24 md:h-28 lg:h-32 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

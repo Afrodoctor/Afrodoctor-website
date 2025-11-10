@@ -1,0 +1,107 @@
+---
+/*
+  afrodoctor-app.astro (NEW)
+  A clean, modern page describing the Afrodoctor mobile app.
+  Uses existing images as placeholder "screenshots" which you can swap later.
+*/
+import BaseLayout from '../layouts/Layout.astro';
+
+const screenshotImages = [
+  '/images/immersed/DSC_0103.JPG',
+  '/images/immersed/DSC_0132.JPG',
+  '/images/immersed/DSC_0133.JPG',
+  '/images/immersed/DSC_0139.JPG',
+];
+
+const features = [
+  { title: 'Secure Bookings', body: 'Book vetted health workers and get confirmed appointments without travel hassles.' },
+  { title: 'Teleconsultations', body: 'Video & chat consultations that connect patients to clinicians quickly.' },
+  { title: 'Digital Records', body: 'Store and access patient history securely — synced across facilities where enabled.' },
+  { title: 'Payments & Insurance', body: 'Integrated payments and insurance data to reduce billing friction.' },
+];
+---
+<BaseLayout title="Afrodoctor Mobile App">
+  <section class="relative py-20 md:py-28 bg-gradient-to-b from-blue-800 to-blue-900 text-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-3 mb-4 px-4 py-2 rounded-full bg-white/10 text-sm font-semibold">
+            <span class="text-white/90">📱</span>
+            <span>Afrodoctor Mobile</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+            Afrodoctor — Healthcare on Your Phone
+          </h1>
+
+          <p class="text-lg text-white/90 mb-6">
+            Afrodoctor connects patients to vetted health workers, enables secure appointments, teleconsultations and digital records — tailored for low-resource settings across Africa.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="#" class="px-6 py-3 bg-white text-blue-900 font-semibold rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-[1.02]" aria-label="Download on Play Store">
+              Download (Play Store)
+            </a>
+            <a href="#" class="px-6 py-3 border border-white/30 text-white rounded-xl backdrop-blur-sm hover:bg-white/10 transition" aria-label="Download on App Store">
+              Download (App Store)
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <!-- Show screenshots (placeholders) -->
+          {screenshotImages.map((src, i) => (
+            <div class="rounded-2xl overflow-hidden shadow-xl bg-white/5 p-2" data-key={i}>
+              <img src={src} alt={`App screenshot ${i + 1}`} class="w-full h-44 object-cover rounded-2xl" loading="lazy" decoding="async" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Key Features</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {features.map(f => (
+          <div class="p-6 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800" data-key={f.title}>
+            <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2">{f.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Screenshots</h3>
+        <a href="/contact" class="text-sm text-blue-800 dark:text-blue-400 underline">Request demo</a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {screenshotImages.map((src, i) => (
+          <div class="rounded-2xl overflow-hidden shadow-lg bg-white" data-key={i}>
+            <img src={src} alt={`screenshot ${i + 1}`} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="#" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-xl shadow-md transition transform hover:scale-[1.02]">
+          Learn how Afrodoctor fits your facility
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Want a tailored deployment?</h4>
+      <p class="text-gray-600 dark:text-gray-300 mb-6">We support clinics and systems with integration, onboarding and training. Reach out and we'll set up a demo.</p>
+      <a href="/contact" class="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-xl font-semibold shadow-sm">Contact Sales</a>
+    </div>
+  </section>
+</BaseLayout>
