@@ -1,15 +1,11 @@
 ---
-// Header.astro (full file)
-// - Theme-aware nav while over hero: links become white for visibility while the hero is visible.
-// - "Solutions" renamed to "Home". Added "News".
-// - Mobile menu updated accordingly.
+// Header.astro
 const pathname = Astro.url.pathname || '/';
 
 const activeClass = "text-blue-600 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:rounded-full";
 const defaultClass = "text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 relative hover:after:w-full after:w-0 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 after:rounded-full";
 
 const getLinkClass = (href: string) => {
-  // server-side active matching (keeps server-rendered active state)
   if (href === '/' && pathname === '/') return activeClass;
   if (href.startsWith('/#')) return defaultClass;
   if (href !== '/' && pathname.startsWith(href)) return activeClass;
@@ -17,7 +13,7 @@ const getLinkClass = (href: string) => {
 };
 ---
 <header class="fixed top-0 left-0 right-0 z-50" data-header>
-  <div id="headerBar" class={`w-full transition-colors duration-300 ${pathname === '/' ? 'bg-transparent' : 'bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-700'} backdrop-blur-md`}>
+  <div id="headerBar" class="w-full transition-colors duration-300 bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-700 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
       <a href="/" class="flex items-center gap-3 group" aria-label="Afrodoctor home">
         <img src="/images/logos/afrodoctor.png" alt="Afrodoctor logo" class="h-10 w-auto transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" />
@@ -25,7 +21,6 @@ const getLinkClass = (href: string) => {
       </a>
 
       <nav id="primaryNav" class="hidden md:flex items-center space-x-8" aria-label="Primary navigation">
-        <!-- each anchor keeps server-side classes; JS toggles .nav--over-hero for contrast on homepage -->
         <a href="/" class={`nav-link ${getLinkClass('/')}`} data-nav>Home</a>
         <a href="/news" class={`nav-link ${getLinkClass('/news')}`} data-nav>News</a>
         <a href="/#impact" class={`nav-link ${getLinkClass('/#impact')}`} data-nav>Impact</a>
@@ -60,7 +55,7 @@ const getLinkClass = (href: string) => {
   </div>
 
   <script type="module" is:inline>
-    // Mobile menu (unchanged)
+    // Mobile menu
     const btn = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
     const openIcon = document.getElementById('icon-open');
@@ -82,71 +77,5 @@ const getLinkClass = (href: string) => {
         closeIcon.classList.add('hidden');
       }
     });
-
-    // Theme-aware link contrast while hero is visible (only applies on homepage '/')
-    (function () {
-      const isHome = location.pathname === '/';
-      if (!isHome) return; // only on homepage we make links white while hero is visible
-
-      const hero = document.querySelector('[data-hero]') || document.getElementById('slidesWrapper') || document.querySelector('main section'); // fallback
-      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-      const headerBar = document.getElementById('headerBar');
-
-      // we add/remove a class to nav links for the over-hero state
-      const setOverHero = (over) => {
-        navLinks.forEach(a => {
-          if (over) {
-            // make links white for visibility
-            a.classList.add('text-white', 'hover:text-white', 'after:hidden');
-            // remove any theme color classes that conflict (a conservative approach)
-            a.classList.remove('text-gray-700', 'dark:text-gray-300', 'text-blue-600', 'font-semibold');
-          } else {
-            // restore server-rendered classes by reloading className from dataset if present
-            a.classList.remove('text-white', 'hover:text-white', 'after:hidden');
-            // we won't attempt to perfectly restore every server class; the server-side getLinkClass already emitted base styles
-          }
-        });
-
-        // header background tweak: keep transparent when over hero, else show opaque
-        if (over) {
-          headerBar.classList.add('bg-transparent');
-          headerBar.classList.remove('bg-white/90', 'dark:bg-gray-900/90');
-        } else {
-          headerBar.classList.remove('bg-transparent');
-          headerBar.classList.add('bg-white/90', 'dark:bg-gray-900/90');
-        }
-      };
-
-      // if there's no hero found, do nothing
-      if (!hero) return;
-
-      // compute hero bottom threshold
-      const isReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const check = () => {
-        const rect = hero.getBoundingClientRect();
-        // consider hero visible if its bottom is > header height + 10 px
-        const headerHeight = document.querySelector('[data-header]')?.clientHeight || 80;
-        const overHero = rect.bottom - headerHeight > 10;
-        setOverHero(overHero);
-      };
-
-      // initial check (run after a small timeout so hero finishes rendering)
-      setTimeout(check, 60);
-
-      // throttle
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          check();
-          ticking = false;
-        });
-      }, { passive: true });
-
-      // also on resize
-      window.addEventListener('resize', check);
-    })();
   </script>
 </header>

@@ -1,28 +1,76 @@
 ---
 /*
-  index.astro (full homepage)
-  - imports updated Header & HeroCarousel
-  - CTA now points to /afrodoctor-app
-  - "View Full Immersed Gallery" updated to "Explore Immersed"
-  - Partner logos sizes kept as requested
+  index.astro
 */
 import BaseLayout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import PricingCard from '../components/PricingCard.tsx';
 
+// Data derived from Product Catalogues 
+// Prices converted from UGX to USD (approx 1 USD = 3700 UGX)
 const hmsPlans = [
-  { name: "Clinic Essential", price: "$499", features: ["5 User Accounts", "Basic Scheduling", "Patient Records (Local)", "Standard Support"], isPrimary: false },
-  { name: "Regional System Pro", price: "$1,999", features: ["Unlimited Users", "Advanced Referral Systems", "Digital Records (Cloud Sync)", "24/7 Priority Support", "Afrodoctor App Integration"], isPrimary: true },
-  { name: "Enterprise Custom", price: "Contact", features: ["Dedicated Servers", "Custom Integrations", "On-Site Training", "Multi-Region Compliance"], isPrimary: false },
+  { 
+    name: "Essentials", 
+    price: "$950", 
+    period: "/year",
+    features: [
+      "Max. 6 Users",
+      "Client Appointment Booking",
+      "Online Consultation",
+      "Digital Prescriptions",
+      "Reception & Triage Modules",
+      "Cash Payments Only"
+    ], 
+    isPrimary: false 
+  },
+  { 
+    name: "Standard", 
+    price: "$1,325", 
+    period: "/year",
+    features: [
+      "Max. 15 Users",
+      "Everything in Essentials",
+      "General Consultation",
+      "Lab OR Radiology Module",
+      "Pharmacy Module",
+      "Procedure Management"
+    ], 
+    isPrimary: false 
+  },
+  { 
+    name: "Business", 
+    price: "$2,900", 
+    period: "/year",
+    features: [
+      "Max. 33 Users",
+      "Full Lab & Radiology Suites",
+      "Inpatient / Admission",
+      "Insurance Integration",
+      "Online Referral System",
+      "Emergency & Treatment"
+    ], 
+    isPrimary: true 
+  },
+  { 
+    name: "Enterprise", 
+    price: "Contact", 
+    features: [
+      "Unlimited Users",
+      "All Modules Included",
+      "Multi-Site Management",
+      "Custom Integrations",
+      "Dedicated Support",
+      "Fixed Payment Options"
+    ], 
+    isPrimary: false 
+  },
 ];
 
 const currentYear = new Date().getFullYear();
 ---
 <BaseLayout title="Home">
-  <!-- Hero -->
   <HeroCarousel />
 
-  <!-- Solutions section (kept intact, id remains #solutions for anchors) -->
   <section id="solutions" class="py-20 md:py-28 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -87,7 +135,6 @@ const currentYear = new Date().getFullYear();
               </li>
             </ul>
 
-            <!-- Changed: now points to the Afrodoctor App page -->
             <a href="/afrodoctor-app" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group/btn inline-flex items-center text-sm" aria-label="Learn more about Afrodoctor app">
               Learn More — Afrodoctor App
               <span class="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
@@ -160,7 +207,6 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
-  <!-- Plans -->
   <section id="plans" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -173,11 +219,12 @@ const currentYear = new Date().getFullYear();
         <div class="w-24 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full mt-6"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
         {hmsPlans.map(plan => (
           <PricingCard client:load
             name={plan.name}
             price={plan.price}
+            period={plan.period}
             features={plan.features}
             isPrimary={plan.isPrimary}
           />
@@ -186,7 +233,6 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
-  <!-- Impact -->
   <section id="impact" class="py-20 md:py-28 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -231,22 +277,21 @@ const currentYear = new Date().getFullYear();
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
           <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 1">
             <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-            <img src="/images/immersed/DSC_0082.JPG" alt="Immersed training group" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+            <img src="/images/immersed/DSC_0113.JPG" alt="Immersed training group" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
           </a>
 
           <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 2">
             <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-            <img src="/images/immersed/DSC_0105.JPG" alt="Participant using mobile" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+            <img src="/images/immersed/DSC_0140.JPG" alt="Participant using mobile" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
           </a>
 
           <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed highlight 3">
             <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-            <img src="/images/immersed/DSC_0139.JPG" alt="Instructor demonstrating" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
+            <img src="/images/pwds/pwd5.jpg" alt="Instructor demonstrating" loading="lazy" decoding="async" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700" />
           </a>
         </div>
 
         <div class="text-center">
-          <!-- Updated button text -->
           <a href="/immersed" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center px-8 py-4 rounded-2xl" aria-label="Explore the Immersed project">
             Explore Immersed
             <span class="ml-2">→</span>
@@ -257,7 +302,6 @@ const currentYear = new Date().getFullYear();
       <div class="mt-20 text-center">
         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-10">In Partnership With:</h3>
         <div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-8">
-          <!-- Partner logos kept at the sizes you specified -->
           <img src="/images/partners/USAID.png" alt="USAID" class="h-28 md:h-32 lg:h-46 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
           <img src="/images/partners/yali2.png" alt="Young African Leaders Initiative (YALI)" class="h-28 md:h-32 lg:h-40 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
           <img src="/images/partners/kenyatta-university.png" alt="Kenyatta University" class="h-24 md:h-28 lg:h-32 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
