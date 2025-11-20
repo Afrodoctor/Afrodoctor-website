@@ -11,6 +11,8 @@ const articles = [
     excerpt: 'Pilot introduces cloud-synced records, streamlined referrals and integrated appointment booking across facilities.',
     image: '/images/immersed/IMG2.jpg',
     href: '#',
+    category: 'Product Update',
+    readTime: '3 min read'
   },
   {
     title: 'Immersed project trains 100+ community health champions',
@@ -18,6 +20,8 @@ const articles = [
     excerpt: 'The Immersed program completed its second cohort focused on digital skills and SRH knowledge.',
     image: '/images/immersed/DSC_0140.JPG',
     href: '#',
+    category: 'Community',
+    readTime: '4 min read'
   },
   {
     title: 'Afrodoctor partners with Kenyatta University on telehealth research',
@@ -25,31 +29,93 @@ const articles = [
     excerpt: 'A collaborative research agreement will explore remote diagnostics and impact on referral times.',
     image: '/images/immersed/IMG3.jpg',
     href: '#',
+    category: 'Partnership',
+    readTime: '5 min read'
   },
 ];
+
+// Additional articles for demonstration
+const additionalArticles = [
+  {
+    title: 'New mobile app update enhances teleconsultation experience',
+    date: '2025-05-22',
+    excerpt: 'Latest release includes improved video quality and offline mode for low-connectivity areas.',
+    image: '/images/immersed/IMG2.jpg',
+    href: '#',
+    category: 'Product Update',
+    readTime: '2 min read'
+  },
+  {
+    title: 'Afrodoctor expands to 3 new countries in East Africa',
+    date: '2025-04-15',
+    excerpt: 'Healthcare providers in Rwanda, Tanzania, and Uganda can now access the Afrodoctor platform.',
+    image: '/images/immersed/DSC_0140.JPG',
+    href: '#',
+    category: 'Expansion',
+    readTime: '3 min read'
+  },
+  {
+    title: 'Digital health literacy program reaches 10,000 rural patients',
+    date: '2025-03-08',
+    excerpt: 'Initiative helps patients navigate digital health tools and understand their health rights.',
+    image: '/images/immersed/IMG3.jpg',
+    href: '#',
+    category: 'Community',
+    readTime: '4 min read'
+  }
+];
 ---
-<BaseLayout title="News">
-  <section class="py-20 md:py-28 bg-white dark:bg-gray-900">
+<BaseLayout title="News & Updates - Afrodoctor">
+
+  <!-- Featured Articles -->
+  <section class="py-24 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">News & Updates</h1>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Latest news about our programs, deployments, research partnerships and community projects.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Featured
+          <span class="text-blue-900 dark:text-blue-400"> Stories</span>
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          In-depth coverage of our major initiatives and breakthroughs
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {articles.map(article => (
-          <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {articles.slice(0, 2).map((article, index) => (
+          <article class="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
             <a href={article.href} class="block">
-              <div class="h-48 w-full overflow-hidden">
-                <img src={article.image} alt={article.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+              <div class="relative h-64 md:h-80 w-full overflow-hidden">
+                <img 
+                  src={article.image} 
+                  alt={article.title} 
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy" 
+                  decoding="async" 
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="inline-block px-3 py-1 bg-blue-900 text-white text-xs font-semibold rounded-full backdrop-blur-sm">
+                    {article.category}
+                  </span>
+                </div>
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
-              <div class="p-6">
-                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">{new Date(article.date).toLocaleDateString()}</p>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">{article.title}</h3>
-                <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{article.excerpt}</p>
+              <div class="p-6 md:p-8">
+                <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  <time datetime={article.date}>{new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                  <span>•</span>
+                  <span>{article.readTime}</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors">
+                  {article.title}
+                </h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                  {article.excerpt}
+                </p>
                 <div class="flex items-center justify-between">
-                  <span class="text-blue-700 dark:text-blue-300 font-semibold">Read more →</span>
-                  <span class="text-sm text-gray-500 dark:text-gray-400">{/* placeholder for author or tag */}</span>
+                  <span class="text-blue-900 dark:text-blue-400 font-semibold group-hover:underline flex items-center gap-2">
+                    Read full story
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
                 </div>
               </div>
             </a>
@@ -57,9 +123,129 @@ const articles = [
         ))}
       </div>
 
-      <div class="mt-12 text-center">
-        <a href="/contact" class="inline-flex items-center px-6 py-3 bg-blue-800 hover:bg-blue-900 text-white font-semibold rounded-xl shadow-md transition transform hover:scale-[1.02]">Contact Us about Coverage</a>
+      <!-- All Articles Grid -->
+      <div class="mb-16">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          Latest
+          <span class="text-blue-900 dark:text-blue-400"> Updates</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[...articles, ...additionalArticles].map((article, index) => (
+            <article class="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <a href={article.href} class="block">
+                <div class="relative h-48 w-full overflow-hidden">
+                  <img 
+                    src={article.image} 
+                    alt={article.title} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                  <div class="absolute top-3 left-3">
+                    <span class="inline-block px-2 py-1 bg-blue-900 text-white text-xs font-semibold rounded-full">
+                      {article.category}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-2">
+                    <time datetime={article.date}>{new Date(article.date).toLocaleDateString()}</time>
+                    <span>•</span>
+                    <span>{article.readTime}</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors">
+                    {article.title}
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
+                    {article.excerpt}
+                  </p>
+                  <span class="text-blue-900 dark:text-blue-400 text-sm font-semibold group-hover:underline flex items-center gap-1">
+                    Read more
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center">
+        <button class="px-8 py-4 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          Load More Articles
+        </button>
       </div>
     </div>
   </section>
+
+  <!-- Categories Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          Browse by
+          <span class="text-blue-900 dark:text-blue-400"> Category</span>
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Explore our news and updates by topic area
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        {[
+          { name: 'Product Updates', count: 12, icon: '🚀' },
+          { name: 'Partnerships', count: 8, icon: '🤝' },
+          { name: 'Community', count: 15, icon: '👥' },
+          { name: 'Research', count: 6, icon: '🔬' }
+        ].map(category => (
+          <a href="#" class="group p-6 bg-white dark:bg-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+            <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+              {category.icon}
+            </div>
+            <h4 class="font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-900 dark:group-hover:text-blue-400 transition-colors">
+              {category.name}
+            </h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{category.count} articles</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <!-- <section class="py-20 bg-blue-900 dark:bg-blue-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="space-y-6">
+        <h4 class="text-3xl md:text-4xl font-bold">
+          Stay Updated with Afrodoctor
+        </h4>
+        <p class="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          Get the latest news, updates, and insights delivered directly to your inbox.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+          <a href="/contact" class="px-8 py-4 bg-white text-blue-900 font-bold rounded-2xl shadow-2xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            Contact Our Media Team
+          </a>
+          <a href="/newsletter" class="px-8 py-4 border-2 border-white/30 text-white font-bold rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+            Subscribe to Newsletter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <style>
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom focus styles for accessibility */
+    button:focus, a:focus {
+      outline: 2px solid #1e40af;
+      outline-offset: 2px;
+    }
+  </style>
 </BaseLayout>
