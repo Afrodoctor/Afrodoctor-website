@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface PlanProps {
   name: string;
@@ -6,17 +6,20 @@ interface PlanProps {
   period?: string;
   features: string[];
   isPrimary: boolean;
+  actionUrl: string; // New required prop
 }
 
-const PricingCard: React.FC<PlanProps> = ({ name, price, period = "/month", features, isPrimary }) => {
-  const [buttonText, setButtonText] = useState("Get Started");
-
-  const handleCtaClick = () => {
-    setButtonText("Request Sent! ✓");
-    setTimeout(() => setButtonText("Get Started"), 3000);
-  };
-
+const PricingCard: React.FC<PlanProps> = ({ 
+  name, 
+  price, 
+  period = "/month", 
+  features, 
+  isPrimary,
+  actionUrl 
+}) => {
+  
   const showPeriod = price && !/contact/i.test(price);
+  const isEnterprise = /contact/i.test(price);
 
   return (
     <div
@@ -91,19 +94,19 @@ const PricingCard: React.FC<PlanProps> = ({ name, price, period = "/month", feat
         </ul>
       </div>
 
-      {/* CTA Button */}
-      <button
-        onClick={handleCtaClick}
+      {/* CTA Button - Converted to Anchor Link */}
+      <a
+        href={actionUrl}
         className={`
-          w-full py-3 rounded-xl font-semibold transition-all duration-300
+          w-full py-3 rounded-xl font-semibold transition-all duration-300 text-center inline-block
           ${isPrimary
             ? 'bg-white text-blue-900 hover:bg-blue-50 shadow-lg hover:shadow-xl'
             : 'bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white shadow-lg hover:shadow-xl'
           }
         `}
       >
-        {buttonText}
-      </button>
+        {isEnterprise ? 'Contact Sales' : 'Get Started'}
+      </a>
     </div>
   );
 };

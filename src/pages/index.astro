@@ -1,7 +1,4 @@
 ---
-/*
-  index.astro
-*/
 import BaseLayout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import PricingCard from '../components/PricingCard.tsx';
@@ -13,6 +10,8 @@ const hmsPlans = [
     name: "Essentials", 
     price: "$950", 
     period: "/year",
+    // Lower friction: Direct to sign up
+    actionUrl: "/signup?plan=essentials",
     features: [
       "Max. 6 Users",
       "Client Appointment Booking",
@@ -27,6 +26,8 @@ const hmsPlans = [
     name: "Standard", 
     price: "$1,325", 
     period: "/year",
+    // Higher friction: Needs a sales demo
+    actionUrl: "/book-demo?plan=standard",
     features: [
       "Max. 15 Users",
       "Everything in Essentials",
@@ -41,6 +42,8 @@ const hmsPlans = [
     name: "Business", 
     price: "$2,900", 
     period: "/year",
+    // Higher friction: Needs a sales demo
+    actionUrl: "/book-demo?plan=business",
     features: [
       "Max. 33 Users",
       "Full Lab & Radiology Suites",
@@ -54,6 +57,8 @@ const hmsPlans = [
   { 
     name: "Enterprise", 
     price: "Contact", 
+    // Custom solution: Contact form
+    actionUrl: "/contact?inquiry=enterprise",
     features: [
       "Unlimited Users",
       "All Modules Included",
@@ -85,10 +90,6 @@ const currentYear = new Date().getFullYear();
           <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
           <div class="relative z-10">
-            <!-- <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              <span class="text-4xl" aria-hidden="true">📱</span>
-            </div> -->
-
             <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-800 dark:group-hover:text-blue-600 transition-colors duration-300">
               Afrodoctor Mobile Application
             </h3>
@@ -146,10 +147,6 @@ const currentYear = new Date().getFullYear();
           <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
           <div class="relative z-10">
-            <!-- <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              <span class="text-4xl" aria-hidden="true">🏥</span>
-            </div> -->
-
             <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-800 dark:group-hover:text-blue-600 transition-colors duration-300">
               Afrodoctor Hospital Management System
             </h3>
@@ -227,6 +224,7 @@ const currentYear = new Date().getFullYear();
             period={plan.period}
             features={plan.features}
             isPrimary={plan.isPrimary}
+            actionUrl={plan.actionUrl}
           />
         ))}
       </div>
@@ -246,27 +244,27 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
-  <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
-    <div class="relative z-10 text-center">
-      <p class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-3">26</p>
-      <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Young Women Trained</p>
-    </div>
-  </div>
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
+          <div class="relative z-10 text-center">
+            <p class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-3">26</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Young Women Trained</p>
+          </div>
+        </div>
 
-  <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-red-50 dark:bg-red-900/10 rounded-3xl overflow-hidden">
-    <div class="relative z-10 text-center">
-      <p class="text-5xl md:text-6xl font-extrabold text-red-700 mb-3">86</p>
-      <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Persons with Disabilities Trained</p>
-    </div>
-  </div>
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-red-50 dark:bg-red-900/10 rounded-3xl overflow-hidden">
+          <div class="relative z-10 text-center">
+            <p class="text-5xl md:text-6xl font-extrabold text-red-700 mb-3">86</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Persons with Disabilities Trained</p>
+          </div>
+        </div>
 
-  <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
-    <div class="relative z-10 text-center">
-      <p class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-3">100+</p>
-      <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Community Health Champions</p>
-    </div>
-  </div>
-</div>
+        <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative p-8 bg-blue-50 dark:bg-blue-900/10 rounded-3xl overflow-hidden">
+          <div class="relative z-10 text-center">
+            <p class="text-5xl md:text-6xl font-extrabold text-blue-800 mb-3">100+</p>
+            <p class="text-gray-700 dark:text-gray-300 font-semibold text-base md:text-lg">Community Health Champions</p>
+          </div>
+        </div>
+      </div>
 
       <div class="max-w-5xl mx-auto">
         <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Immersed in-action Highlights</h3>
