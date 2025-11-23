@@ -1,17 +1,22 @@
 ---
 // Header.astro
 const pathname = Astro.url.pathname || '/';
+// Strip trailing slash for consistent comparison
+const currentPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
 
 const activeClass = "text-blue-600 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:rounded-full";
 const defaultClass = "text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-all duration-300 relative hover:after:w-full after:w-0 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 after:rounded-full";
 
 const getLinkClass = (href: string) => {
-  if (href === '/' && pathname === '/') return activeClass;
-  if (href.startsWith('/#')) return defaultClass;
-  if (href !== '/' && pathname.startsWith(href)) return activeClass;
+  if (href === '/' && currentPath === '/') return activeClass;
+  // Special handling for anchor links on home page vs other pages
+  if (href.startsWith('/#')) return defaultClass; 
+  if (href === currentPath) return activeClass;
+  if (href !== '/' && currentPath.startsWith(href)) return activeClass;
   return defaultClass;
 };
 ---
+
 <header class="fixed top-0 left-0 right-0 z-50" data-header>
   <div id="headerBar" class="w-full transition-colors duration-300 bg-white/90 dark:bg-gray-900/90 border-b border-gray-100 dark:border-gray-700 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
@@ -26,7 +31,7 @@ const getLinkClass = (href: string) => {
         <a href="/#impact" class={`nav-link ${getLinkClass('/#impact')}`} data-nav>Impact</a>
         <a href="/about" class={`nav-link ${getLinkClass('/about')}`} data-nav>About Us</a>
         <a href="/contact" class={`nav-link ${getLinkClass('/contact')}`} data-nav>Contact</a>
-        <a href="/contact#donate" class="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 shadow-sm text-sm">DONATE</a>
+        <a href="/donate" class="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 shadow-sm text-sm">DONATE</a>
       </nav>
 
       <div class="md:hidden">
@@ -42,24 +47,23 @@ const getLinkClass = (href: string) => {
         <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100 dark:border-gray-700">
           <span class="font-bold text-red-600 text-lg tracking-wide">AFRODOCTOR</span>
         </div>
-
         <a href="/" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Home</a>
         <a href="/news" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">News</a>
         <a href="/#impact" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Impact</a>
         <a href="/about" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">About Us</a>
         <a href="/contact" class="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600/20 rounded-xl transition-all duration-300">Contact</a>
-
-        <a href="/contact#donate" class="block mt-4 py-3 px-6 rounded-xl text-center bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 shadow-sm">DONATE</a>
+        <a href="/donate" class="block mt-4 py-3 px-6 rounded-xl text-center bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 shadow-sm">DONATE</a>
       </div>
     </div>
   </div>
 
   <script type="module" is:inline>
-    // Mobile menu
+    // Mobile menu logic
     const btn = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
     const openIcon = document.getElementById('icon-open');
     const closeIcon = document.getElementById('icon-close');
+
     btn && btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!expanded));

@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/Layout.astro';
+---
+
+<BaseLayout title="Donate - Afrodoctor Foundation">
+  <section class="relative py-20 bg-red-50 dark:bg-red-900/10 border-b border-gray-100 dark:border-gray-700 overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-red-200 dark:bg-red-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-200 dark:bg-orange-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block mb-6 mt-3 px-4 py-2 bg-red-100 dark:bg-red-800/50 text-red-700 dark:text-red-300 rounded-full text-sm font-semibold">
+        ❤️ Support Our Mission
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+        Support Capacity Building
+      </h1>
+      <p class="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
+        Help us bridge the gap in digital health accessibility for vulnerable groups across Africa.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="prose prose-lg dark:prose-invert text-gray-700 dark:text-gray-200 mb-12 max-w-none">
+        <p>
+          In our pursuit of equitable access to quality health services, we encountered challenges in reaching and including several vulnerable groups who are in great need but at high risk of being left out. These groups include young women and persons with disabilities (PWDs).
+        </p>
+        <p>
+          National reports have highlighted gaps in health service access within traditional health systems for these groups — including physical accessibility hurdles, lack of inclusivity, discrimination, lack of privacy, and fear of judgement — which puts them at an increased risk of being left out, yet they need quality health services as others do.
+        </p>
+        <p>
+          Novel and context-specific digital innovations such as the Afrodoctor mobile application and Afrodoctor HMS software can help bridge the health system gaps mentioned. However, these populations also face additional individual challenges to access quality health services, including inadequate knowledge and skills in using digital platforms, lack of digital gadgets, and poverty which limits their ability to purchase data bundles and engage meaningfully with the health system.
+        </p>
+        <p>
+          At the Afrodoctor Foundation, we address these individual barriers by building digital skills and health utilization capacity among young women and PWDs, and by providing internet connectivity and devices to these vulnerable groups.
+        </p>
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border-l-4 border-blue-600 dark:border-blue-400 not-prose my-8">
+          <p class="text-lg font-medium text-gray-900 dark:text-white m-0">
+            When you donate, you support the scaling up of training, provision of digital gadgets, and mobile data to these groups. You also enable free medical appointment booking and consultations for people in great need who cannot afford services.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-3xl text-center">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Ready to make an impact?</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="mailto:info@afrodoctor.org?subject=Donation%20to%20Afrodoctor%20Foundation"
+            class="inline-flex items-center justify-center w-full sm:w-auto py-4 px-8 text-lg font-bold rounded-2xl text-white bg-blue-700 hover:bg-blue-800 transition transform hover:scale-[1.02] shadow-lg"
+            aria-label="Donate via email"
+          >
+            Email to Donate
+            <span class="ml-2">→</span>
+          </a>
+          <a
+            href="tel:+256709784058"
+            class="inline-flex items-center justify-center w-full sm:w-auto py-4 px-8 text-lg font-bold rounded-2xl border-2 border-gray-200 dark:border-gray-600 text-gray-800 dark:text-white bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition"
+            aria-label="Call to donate"
+          >
+            Call: +256 709 784 058
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+          You can also reach us directly at <a class="text-blue-700 dark:text-blue-300 font-medium hover:underline" href="mailto:info@afrodoctor.org">info@afrodoctor.org</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  /* Typography fixes */
+  .prose p { margin-bottom: 1.5rem; }
+  @media (min-width: 768px) {
+    .prose { font-size: 1.125rem; line-height: 1.75; }
+  }
+</style>

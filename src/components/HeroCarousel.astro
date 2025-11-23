@@ -1,11 +1,6 @@
 ---
 /*
   HeroCarousel.astro
-  Updated per CEO & your instructions:
-   - ordering of slides: 2 VC images (unique captions), 2 young-women training (shared caption),
-     2 PWD training (shared caption), 1 HMS slide, 1 Mobile App slide (IMG2.jpg).
-   - removed indicators/dots
-   - preserved prev/next controls, keyboard + swipe, reduced-motion respect, and text animations
 */
 const slides = [
   // Vice Chancellor images (2) - each with unique caption
@@ -52,7 +47,7 @@ const slides = [
 
   // Afrodoctor - HMS (single animated image)
   {
-    src: '/images/immersed/IMG3.jpg',
+    src: '/images/immersed/IMG2.jpg',
     alt: 'Afrodoctor HMS — systems and leadership',
     title: 'Reach more patients with Afrodoctor – HMS',
     subtitle: 'Choose a comprehensive and user-friendly health facility management system to streamline patient appointments, online consultations, facility workflows and records management.'
@@ -90,7 +85,7 @@ const slideCount = slides.length;
 </style>
 
 <div class="relative w-full mt-20" data-hero>
-  <div class="relative h-[85vh] md:h-[90vh] lg:h-[95vh] overflow-hidden">
+  <div class="relative h-[85vh] md:h-[90vh] lg:h-[84vh] overflow-hidden">
     <div id="slidesWrapper" class="absolute inset-0 flex transition-transform duration-700 ease-in-out will-change-transform">
       {slides.map((s, i) => (
         <div
@@ -113,12 +108,12 @@ const slideCount = slides.length;
       </div>
     </div>
 
-    <div class="absolute bottom-24 right-6 md:right-12 z-30 max-w-2xl text-right px-4 pointer-events-none">
-      <h1 id="heroTitle" class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-lg" aria-live="polite">{slides[0].title}</h1>
+    <div class="absolute bottom-10 right-6 md:right-12 z-30 max-w-2xl text-right px-4 pointer-events-none">
+      <h4 id="heroTitle" class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-lg" aria-live="polite">{slides[0].title}</h4>
       <p id="heroSubtitle" class="mt-2 text-lg md:text-xl text-white/90 ml-auto drop-shadow-md">{slides[0].subtitle}</p>
     </div>
 
-    <!-- Prev / Next controls (kept) -->
+    <!-- Prev / Next controls -->
     <div class="absolute inset-y-0 left-0 z-40 flex items-center pl-4 hero-controls">
       <button id="heroPrev" aria-label="Previous slide" class="btn w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center focus:outline-none backdrop-blur-sm">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
@@ -130,8 +125,6 @@ const slideCount = slides.length;
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
-
-    <!-- NOTE: indicators removed as requested -->
   </div>
 
   <script is:inline>

@@ -2,112 +2,44 @@
 import BaseLayout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.tsx';
 ---
+
 <BaseLayout title="Contact Us">
   <section class="relative py-24 bg-blue-50 dark:bg-blue-900/20 border-b border-gray-100 dark:border-gray-700 overflow-hidden">
     <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-
+    
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="inline-block mb-6 px-4 py-2 bg-blue-100 dark:bg-blue-800/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold">
         📬 Get In Touch
       </div>
       <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
-        Let's Transform Health Together
+        Let's Transform Health in Africa Together
       </h1>
-      <p class="text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
-        Whether you're a health facility looking to adopt the <strong class="text-blue-900 dark:text-blue-300">Afrodoctor HMS</strong> or a partner seeking collaboration, we're ready to connect.
+      <p class="text-xl max-w-4xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
+        Whether you're a <strong class="text-blue-900 dark:text-blue-300">patient looking to use the Afrodoctor mobile app</strong>, a health facility looking to adopt the Afrodoctor HMS, or a partner seeking collaboration, we're ready to connect.
       </p>
     </div>
   </section>
 
-  <section class="py-24 bg-white dark:bg-gray-900">
-    <!-- reduced horizontal page padding so the left column has more room -->
-    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 grid md:grid-cols-3 gap-8 items-start">
-
-      <!-- LEFT COLUMN: Form + Quick Response -->
-      <div id="inquiry" class="space-y-8 md:col-span-1 flex flex-col">
-        <!-- Form now allowed to take full width of its column; reduced internal padding so it doesn't feel squeezed -->
+  <section class="py-6 bg-white dark:bg-gray-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div id="inquiry" class="space-y-8">
         <ContactForm client:load />
-
+        
         <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 dark:border-blue-400 p-5 rounded-r-2xl">
           <div class="flex items-center">
             <span class="text-3xl mr-3">⚡</span>
             <div>
               <p class="font-bold text-gray-900 dark:text-white">Quick Response Time</p>
-              <p class="text-sm text-gray-600 dark:text-gray-400">We typically respond within 24 hours</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">We typically respond within 24 hours.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Donate (takes 2/3 width on md and up) -->
-      <div class="space-y-8 md:col-span-2 lg:pr-0">
-
-        <!-- Donate: no card wrapper, simpler full-width panel that aligns with the grid and expands on large screens -->
-        <div id="donate" class="relative w-full">
-          <div class="relative z-10 max-w-none">
-
-            <div class="flex items-start mb-6">
-              <div class="w-16 h-16 flex items-center justify-center mr-4 text-4xl">
-                <span aria-hidden="true">❤️</span>
-              </div>
-              <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Donate — Support Capacity Building</h2>
-            </div>
-
-            <!-- Narrative content (keeps full width of the column) -->
-            <div class="prose prose-lg dark:prose-invert text-gray-700 dark:text-gray-200 mb-6 max-w-none">
-              <p>
-                In our pursuit of equitable access to quality health services, we encountered challenges in reaching and including several vulnerable groups who are in great need but at high risk of being left out. These groups include young women and persons with disabilities (PWDs).
-              </p>
-
-              <p>
-                National reports have highlighted gaps in health service access within traditional health systems for these groups — including physical accessibility hurdles, lack of inclusivity, discrimination, lack of privacy, and fear of judgement — which puts them at an increased risk of being left out, yet they need quality health services as others do.
-              </p>
-
-              <p>
-                Novel and context-specific digital innovations such as the Afrodoctor mobile application and Afrodoctor HMS software can help bridge the health system gaps mentioned. However, these populations also face additional individual challenges to access quality health services, including inadequate knowledge and skills in using digital platforms, lack of digital gadgets, and poverty which limits their ability to purchase data bundles and engage meaningfully with the health system.
-              </p>
-
-              <p>
-                At the Afrodoctor Foundation, we address these individual barriers by building digital skills and health utilization capacity among young women and PWDs, and by providing internet connectivity and devices to these vulnerable groups.
-              </p>
-
-              <p>
-                When you donate, you support the scaling up of training, provision of digital gadgets, and mobile data to these groups. You also enable free medical appointment booking and consultations for people in great need who cannot afford services.
-              </p>
-            </div>
-
-            <!-- CTA buttons (email + phone) -->
-            <div class="grid gap-3 sm:flex sm:items-center sm:gap-4">
-              <a
-                href="mailto:info@afrodoctor.org?subject=Donation%20to%20Afrodoctor%20Foundation"
-                class="inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 text-lg font-semibold rounded-2xl text-white bg-blue-700 hover:bg-blue-800 transition transform hover:scale-[1.02] shadow"
-                aria-label="Donate via email"
-              >
-                Email to Donate
-                <span class="ml-2">→</span>
-              </a>
-
-              <a
-                href="tel:+256709784058"
-                class="inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 text-lg font-semibold rounded-2xl border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-white bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition"
-                aria-label="Call to donate"
-              >
-                Call: +256 709 784 058
-              </a>
-            </div>
-
-            <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
-              To help these groups and support our work, email <a class="text-blue-700 dark:text-blue-300 font-medium" href="mailto:info@afrodoctor.org">info@afrodoctor.org</a> or call <a class="text-blue-700 dark:text-blue-300 font-medium" href="tel:+256709784058">+256 709 784 058</a>.
-            </p>
-
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <style>
@@ -116,23 +48,10 @@ import ContactForm from '../components/ContactForm.tsx';
     33% { transform: translate(30px, -50px) scale(1.1); }
     66% { transform: translate(-20px, 20px) scale(0.9); }
   }
-
   .animate-blob {
     animation: blob 7s infinite;
   }
-
   .animation-delay-2000 {
     animation-delay: 2s;
-  }
-
-  /* keep prose styling for narrative paragraphs when Tailwind typography plugin isn't present */
-  .prose p { margin: 0 0 1rem; }
-  @media (min-width: 768px) {
-    .prose { font-size: 1.03rem; line-height: 1.6; }
-  }
-
-  /* Small helper so the donate panel aligns closer to the right edge on very large screens if needed */
-  @media (min-width: 1024px) {
-    .lg\:pr-0 { padding-right: 0 !important; }
   }
 </style>

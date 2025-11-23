@@ -1,16 +1,11 @@
 ---
 /*
   index.astro (Home)
-  All content updated per CEO feedback:
-   - Afrodoctor Mobile Application: updated narrative start, removed "and history" from bullet 3, primary button changed to "Download the Afrodoctor app now", and "Learn More" kept.
-   - Afrodoctor HMS: narrative starts with "This comprehensive system is a backbone for ...", replaced resource wording with "health facility workflow organization", replaced "excessive" with "expensive".
-   - Plans section: replaced 'provider' with 'facility'.
-   - Immersed: added "Project" everywhere, changed CTA to "Explore the Immersed - Project", added a download link placeholder for project report.
-   - Partner logos: made colored (Header component change already applied).
 */
 import BaseLayout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import PricingCard from '../components/PricingCard.tsx';
+import Footer from '../components/Footer.astro';
 
 const hmsPlans = [
   { 
@@ -73,8 +68,6 @@ const hmsPlans = [
     isPrimary: false 
   },
 ];
-
-const currentYear = new Date().getFullYear();
 ---
 <BaseLayout title="Home">
   <HeroCarousel />
@@ -127,7 +120,6 @@ const currentYear = new Date().getFullYear();
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <!-- removed 'and history' per CEO -->
                 <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Digital access to complete medical records</span>
               </li>
 
@@ -192,7 +184,6 @@ const currentYear = new Date().getFullYear();
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <!-- changed 'excessive' -> 'expensive' per CEO -->
                 <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Reduces need for expensive facility-specific IT investment</span>
               </li>
 
@@ -217,7 +208,7 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
-  <!-- Plans -->
+  <!-- Plans and Immersed sections -->
   <section id="plans" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -245,7 +236,6 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
-  <!-- Immersed Project -->
   <section id="impact" class="py-20 md:py-28 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -307,17 +297,16 @@ const currentYear = new Date().getFullYear();
             <span class="ml-2">→</span>
           </a>
 
-          <!-- Placeholder download link: swap href with real report path when you upload the final doc -->
-          <a href="/documents/immersed-project-report.pdf" class="px-5 py-3 border border-blue-800 text-blue-800 dark:text-blue-600 rounded-xl font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-sm" aria-label="Download Immersed project report" download>
+          <a href="/documents/immersed-project-report.pdf" class="px-5 py-3 border border-blue-800 text-blue-800 dark:text-blue-600 rounded-xl font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-sm" aria-label="Download Immersed project report" download target="_blank" rel="noopener noreferrer">
             Download Immersed Project Report
           </a>
         </div>
       </div>
 
       <div class="mt-20 text-center">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-10">Trusted & Partnered With</h3>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">In Partnership With:</h3>
+         <div class="w-34 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full mb-4"></div>
         <div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-8">
-          <!-- Removed grayscale so logos show colored -->
           <img src="/images/partners/USAID.png" alt="USAID" class="h-28 md:h-32 lg:h-46 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
           <img src="/images/partners/yali2.png" alt="Young African Leaders Initiative (YALI)" class="h-28 md:h-32 lg:h-40 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
           <img src="/images/partners/kenyatta-university.png" alt="Kenyatta University" class="h-24 md:h-28 lg:h-32 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
@@ -325,4 +314,7 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
   </section>
+
+  <!-- Footer component -->
+  <Footer />
 </BaseLayout>
