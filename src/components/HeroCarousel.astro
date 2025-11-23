@@ -1,33 +1,72 @@
 ---
 /*
   HeroCarousel.astro
+  Updated per CEO & your instructions:
+   - ordering of slides: 2 VC images (unique captions), 2 young-women training (shared caption),
+     2 PWD training (shared caption), 1 HMS slide, 1 Mobile App slide (IMG2.jpg).
+   - removed indicators/dots
+   - preserved prev/next controls, keyboard + swipe, reduced-motion respect, and text animations
 */
 const slides = [
-    {
-    src: '/images/immersed/IMG5.jpg',
-    alt: 'Afrodoctor HMS demo in action',
-    title: 'Advancing Digital Health Systems',
-    subtitle: 'Connecting patients and health workers across Africa with secure appointments and digital records.',
+  // Vice Chancellor images (2) - each with unique caption
+  {
+    src: '/images/immersed/IMG1.jpg',
+    alt: 'Meeting with Kenyatta University Vice Chancellor',
+    title: 'Kenyatta University Vice Chancellor visits Afrodoctor',
+    subtitle: 'The Vice Chancellor of KU, Prof. Paul Wainaina visited Afrodoctor to provide leadership support on the transformational fund activities.'
   },
+  {
+    src: '/images/immersed/IMG5.jpg',
+    alt: 'Team members group photo with the Kenyatta University Vice Chancellor',
+    title: 'Kenyatta University leadership engagement at Afrodoctor',
+    subtitle: 'Kenyatta University leadership met Afrodoctor to discuss partnership support and collaboration on the transformational fund.'
+  },
+
+  // Training of digital health champions - Young women (2) - shared caption
   {
     src: '/images/immersed/DSC_0113.JPG',
     alt: 'Students with laptops during digital skills training',
-    title: 'Digital Skills Training in Action',
-    subtitle: 'Hands-on training sessions where marginalized communities learn digital health tools and applications.',
+    title: 'Building capacity of marginalized communities in digital health skills',
+    subtitle: 'We trained young women and persons with disabilities in digital health and literacy who cascaded the skills to their peers in their communities to create impact.'
   },
   {
-    src: '/images/immersed/DSC_0140.JPG',
-    alt: 'Community outreach and health education session',
-    title: 'Community Health Outreach',
-    subtitle: 'Engaging directly with communities to provide digital health education and build local capacity.',
+    src: '/images/immersed/DSC_0114.JPG',
+    alt: 'Training session with young women participants',
+    title: 'Building capacity of marginalized communities in digital health skills',
+    subtitle: 'We trained young women and persons with disabilities in digital health and literacy who cascaded the skills to their peers in their communities to create impact.'
   },
-    {
+
+  // Training of digital health champions - PWDs (2) - shared caption (same as above)
+  {
+    src: '/images/pwds/pwd1.jpg',
+    alt: 'Persons with disabilities participating in training',
+    title: 'Building capacity of marginalized communities in digital health skills',
+    subtitle: 'We trained young women and persons with disabilities in digital health and literacy who cascaded the skills to their peers in their communities to create impact.'
+  },
+  {
+    src: '/images/pwds/pwd5.jpg',
+    alt: 'Instructor demonstrating digital health tools to PWD participants',
+    title: 'Building capacity of marginalized communities in digital health skills',
+    subtitle: 'We trained young women and persons with disabilities in digital health and literacy who cascaded the skills to their peers in their communities to create impact.'
+  },
+
+  // Afrodoctor - HMS (single animated image)
+  {
+    src: '/images/immersed/IMG3.jpg',
+    alt: 'Afrodoctor HMS — systems and leadership',
+    title: 'Reach more patients with Afrodoctor – HMS',
+    subtitle: 'Choose a comprehensive and user-friendly health facility management system to streamline patient appointments, online consultations, facility workflows and records management.'
+  },
+
+  // Afrodoctor mobile app (use IMG2.jpg as requested)
+  {
     src: '/images/immersed/IMG2.jpg',
-    alt: 'Immersed training: digital skills session—group shot',
-    title: 'Building Local Capacity',
-    subtitle: 'Training communities in digital and sexual & reproductive health to create community health champions.',
-  },
+    alt: 'CEO giving speech',
+    title: 'Avoid the lines and uncertainty: Get yourself a doctor’s appointment now',
+    subtitle: 'Download the Afrodoctor mobile app and get yourself a doctor’s appointment, consult online, and receive your medical reports online.'
+  }
 ];
+
 const slideCount = slides.length;
 ---
 <style>
@@ -45,7 +84,9 @@ const slideCount = slides.length;
     .hero-animate { animation: none !important; transform: none !important; opacity: 1 !important; }
   }
 
-  .indicator-active { transform: scaleX(1.8); transition: transform .28s cubic-bezier(.2,.9,.2,1); }
+  /* Slight visual for prev/next buttons */
+  .hero-controls .btn { transition: transform .15s ease; }
+  .hero-controls .btn:hover { transform: scale(1.06); }
 </style>
 
 <div class="relative w-full mt-20" data-hero>
@@ -72,51 +113,48 @@ const slideCount = slides.length;
       </div>
     </div>
 
-    <div class="absolute bottom-20 right-6 md:right-12 z-30 max-w-2xl text-right px-4 pointer-events-none">
+    <div class="absolute bottom-24 right-6 md:right-12 z-30 max-w-2xl text-right px-4 pointer-events-none">
       <h1 id="heroTitle" class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-lg" aria-live="polite">{slides[0].title}</h1>
       <p id="heroSubtitle" class="mt-2 text-lg md:text-xl text-white/90 ml-auto drop-shadow-md">{slides[0].subtitle}</p>
     </div>
 
-    <button id="heroPrev" aria-label="Previous slide" class="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:scale-105 transition backdrop-blur-sm">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-    </button>
-    <button id="heroNext" aria-label="Next slide" class="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:scale-105 transition backdrop-blur-sm">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-    </button>
-
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
-      {slides.map((_, i) => (
-        <button
-          data-indicator={i}
-          aria-label={`Go to slide ${i + 1}`}
-          class="w-3 h-3 rounded-full bg-white/60 hover:scale-110 transition-all"
-        />
-      ))}
+    <!-- Prev / Next controls (kept) -->
+    <div class="absolute inset-y-0 left-0 z-40 flex items-center pl-4 hero-controls">
+      <button id="heroPrev" aria-label="Previous slide" class="btn w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center focus:outline-none backdrop-blur-sm">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
     </div>
+
+    <div class="absolute inset-y-0 right-0 z-40 flex items-center pr-4 hero-controls">
+      <button id="heroNext" aria-label="Next slide" class="btn w-12 h-12 rounded-full bg-white/10 text-white flex items-center justify-center focus:outline-none backdrop-blur-sm">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- NOTE: indicators removed as requested -->
   </div>
 
   <script is:inline>
     (() => {
-      const slides = Array.from(document.querySelectorAll('#slidesWrapper > [data-index]'));
       const wrapper = document.getElementById('slidesWrapper');
       const prevBtn = document.getElementById('heroPrev');
       const nextBtn = document.getElementById('heroNext');
-      const indicators = Array.from(document.querySelectorAll('[data-indicator]'));
       const heroTitle = document.getElementById('heroTitle');
       const heroSubtitle = document.getElementById('heroSubtitle');
-      // removed button selectors
 
+      const slides = Array.from(document.querySelectorAll('#slidesWrapper > [data-index]'));
       let index = 0;
       let interval = null;
       const count = slides.length;
 
-      // simplified dataset (no CTAs)
-      const slideDataset = [
-         { title: 'Advancing Digital Health Systems', subtitle: 'Connecting patients and health workers across Africa with secure appointments and digital records.' },
-        { title: 'Digital Skills Training in Action', subtitle: 'Hands-on training sessions where marginalized communities learn digital health tools and applications.' },
-        { title: 'Community Health Outreach', subtitle: 'Engaging directly with communities to provide digital health education and build local capacity.' },
-        { title: 'Building Local Capacity', subtitle: 'Training communities in digital and sexual & reproductive health to create community health champions.' },
-      ];
+      const slideDataset = Array.from({ length: count }).map((_, i) => {
+        // read the data attributes set on the images (keeps content single-source)
+        const img = slides[i].querySelector('img');
+        return {
+          title: img?.dataset?.title || '',
+          subtitle: img?.dataset?.subtitle || ''
+        };
+      });
 
       const animateText = (el) => {
         if (!el) return;
@@ -127,21 +165,13 @@ const slideCount = slides.length;
 
       const setSlideData = (i) => {
         const meta = slideDataset[i] || slideDataset[0];
-        
-        // update text only
         heroTitle.textContent = meta.title;
         heroSubtitle.textContent = meta.subtitle;
 
-        // animate text
         if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
           animateText(heroTitle);
           animateText(heroSubtitle);
         }
-
-        indicators.forEach((btn, idx) => {
-          btn.style.opacity = idx === i ? '1' : '0.6';
-          if (idx === i) btn.classList.add('indicator-active'); else btn.classList.remove('indicator-active');
-        });
       };
 
       const moveTo = (i) => {
@@ -155,7 +185,6 @@ const slideCount = slides.length;
 
       nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); next(); resetAuto(); });
       prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); prev(); resetAuto(); });
-      indicators.forEach((btn, i) => btn.addEventListener('click', (e) => { e.stopPropagation(); moveTo(i); resetAuto(); }));
 
       const startAuto = () => {
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

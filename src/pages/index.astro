@@ -1,16 +1,22 @@
 ---
+/*
+  index.astro (Home)
+  All content updated per CEO feedback:
+   - Afrodoctor Mobile Application: updated narrative start, removed "and history" from bullet 3, primary button changed to "Download the Afrodoctor app now", and "Learn More" kept.
+   - Afrodoctor HMS: narrative starts with "This comprehensive system is a backbone for ...", replaced resource wording with "health facility workflow organization", replaced "excessive" with "expensive".
+   - Plans section: replaced 'provider' with 'facility'.
+   - Immersed: added "Project" everywhere, changed CTA to "Explore the Immersed - Project", added a download link placeholder for project report.
+   - Partner logos: made colored (Header component change already applied).
+*/
 import BaseLayout from '../layouts/Layout.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import PricingCard from '../components/PricingCard.tsx';
 
-// Data derived from Product Catalogues 
-// Prices converted from UGX to USD (approx 1 USD = 3700 UGX)
 const hmsPlans = [
   { 
     name: "Essentials", 
     price: "$950", 
     period: "/year",
-    // Lower friction: Direct to sign up
     actionUrl: "/signup?plan=essentials",
     features: [
       "Max. 6 Users",
@@ -26,7 +32,6 @@ const hmsPlans = [
     name: "Standard", 
     price: "$1,325", 
     period: "/year",
-    // Higher friction: Needs a sales demo
     actionUrl: "/book-demo?plan=standard",
     features: [
       "Max. 15 Users",
@@ -42,7 +47,6 @@ const hmsPlans = [
     name: "Business", 
     price: "$2,900", 
     period: "/year",
-    // Higher friction: Needs a sales demo
     actionUrl: "/book-demo?plan=business",
     features: [
       "Max. 33 Users",
@@ -57,7 +61,6 @@ const hmsPlans = [
   { 
     name: "Enterprise", 
     price: "Contact", 
-    // Custom solution: Contact form
     actionUrl: "/contact?inquiry=enterprise",
     features: [
       "Unlimited Users",
@@ -86,6 +89,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+        <!-- Afrodoctor Mobile Application -->
         <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-white dark:bg-gray-800 p-10 rounded-3xl overflow-hidden">
           <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -95,7 +99,7 @@ const currentYear = new Date().getFullYear();
             </h3>
 
             <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
-              Linking patients to needed health services, drastically reducing indirect costs of travel and lodging, and eliminating fraud risk. This is the consumer-facing side of our ecosystem.
+              By directly linking patients to needed health services, the Afrodoctor mobile application reduces indirect costs of travel and lodging and eliminates fraud risk. This is the consumer-facing side of our ecosystem.
             </p>
 
             <ul class="space-y-4 mb-8">
@@ -123,7 +127,8 @@ const currentYear = new Date().getFullYear();
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Digital access to complete medical records and history</span>
+                <!-- removed 'and history' per CEO -->
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Digital access to complete medical records</span>
               </li>
 
               <li class="flex items-start group/item">
@@ -136,13 +141,20 @@ const currentYear = new Date().getFullYear();
               </li>
             </ul>
 
-            <a href="/afrodoctor-app" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group/btn inline-flex items-center text-sm" aria-label="Learn more about Afrodoctor app">
-              Learn More — Afrodoctor App
-              <span class="ml-2 group-hover/btn:translate-x-1 transition-transform">→</span>
-            </a>
+            <div class="flex gap-3 items-center">
+              <a href="/afrodoctor-app" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center text-sm" aria-label="Download the Afrodoctor app now">
+                Download the Afrodoctor app now
+                <span class="ml-2 transition-transform">↓</span>
+              </a>
+
+              <a href="/afrodoctor-app" class="px-5 py-3 border border-blue-800 text-blue-800 dark:text-blue-600 rounded-xl font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-sm" aria-label="Learn more about Afrodoctor app">
+                Learn more
+              </a>
+            </div>
           </div>
         </div>
 
+        <!-- Afrodoctor HMS -->
         <div class="transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700 group relative bg-white dark:bg-gray-800 p-10 rounded-3xl overflow-hidden">
           <div class="absolute inset-0 bg-blue-500/5 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -152,7 +164,7 @@ const currentYear = new Date().getFullYear();
             </h3>
 
             <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">
-              The backbone for health workers, enabling facility management, schedule organization, streamlined patient care pathways, and seamless referrals across the health network.
+              This comprehensive system is a backbone for health workers, enabling facility management, facility scheduling, streamlined patient care pathways, and seamless referrals across the health network.
             </p>
 
             <ul class="space-y-4 mb-8">
@@ -162,7 +174,7 @@ const currentYear = new Date().getFullYear();
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Universal patient scheduling and resource organization</span>
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Universal patient scheduling and health facility workflow organization</span>
               </li>
 
               <li class="flex items-start">
@@ -180,7 +192,8 @@ const currentYear = new Date().getFullYear();
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Reduces need for excessive facility-specific IT investment</span>
+                <!-- changed 'excessive' -> 'expensive' per CEO -->
+                <span class="text-gray-700 dark:text-gray-300 leading-relaxed">Reduces need for expensive facility-specific IT investment</span>
               </li>
 
               <li class="flex items-start">
@@ -204,6 +217,7 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
+  <!-- Plans -->
   <section id="plans" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -211,7 +225,7 @@ const currentYear = new Date().getFullYear();
           Afrodoctor HMS Plans for Health Facilities
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Tailored solutions for every size of health provider, from small clinics to large regional systems.
+          Tailored solutions for every size of health facility, from small clinics to large regional systems.
         </p>
         <div class="w-24 h-1 bg-blue-800 dark:bg-blue-700 mx-auto rounded-full mt-6"></div>
       </div>
@@ -231,6 +245,7 @@ const currentYear = new Date().getFullYear();
     </div>
   </section>
 
+  <!-- Immersed Project -->
   <section id="impact" class="py-20 md:py-28 bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -267,7 +282,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="max-w-5xl mx-auto">
-        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Immersed in-action Highlights</h3>
+        <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Immersed Project — in-action Highlights</h3>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
           <a href="/immersed" class="group block relative overflow-hidden rounded-2xl shadow-xl dark:shadow-gray-800 hover:shadow-2xl dark:hover:shadow-gray-700 transition-all duration-500" aria-label="Immersed training session">
@@ -286,10 +301,15 @@ const currentYear = new Date().getFullYear();
           </a>
         </div>
 
-        <div class="text-center">
+        <div class="text-center flex flex-col sm:flex-row justify-center gap-4 items-center">
           <a href="/immersed" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center px-8 py-4 rounded-2xl" aria-label="Explore the Immersed project">
-            Explore Immersed
+            Explore the Immersed - Project
             <span class="ml-2">→</span>
+          </a>
+
+          <!-- Placeholder download link: swap href with real report path when you upload the final doc -->
+          <a href="/documents/immersed-project-report.pdf" class="px-5 py-3 border border-blue-800 text-blue-800 dark:text-blue-600 rounded-xl font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-sm" aria-label="Download Immersed project report" download>
+            Download Immersed Project Report
           </a>
         </div>
       </div>
@@ -297,9 +317,10 @@ const currentYear = new Date().getFullYear();
       <div class="mt-20 text-center">
         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-10">Trusted & Partnered With</h3>
         <div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-8">
-          <img src="/images/partners/USAID.png" alt="USAID" class="h-28 md:h-32 lg:h-46 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
-          <img src="/images/partners/yali2.png" alt="Young African Leaders Initiative (YALI)" class="h-28 md:h-32 lg:h-40 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
-          <img src="/images/partners/kenyatta-university.png" alt="Kenyatta University" class="h-24 md:h-28 lg:h-32 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+          <!-- Removed grayscale so logos show colored -->
+          <img src="/images/partners/USAID.png" alt="USAID" class="h-28 md:h-32 lg:h-46 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+          <img src="/images/partners/yali2.png" alt="Young African Leaders Initiative (YALI)" class="h-28 md:h-32 lg:h-40 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
+          <img src="/images/partners/kenyatta-university.png" alt="Kenyatta University" class="h-24 md:h-28 lg:h-32 transition-all duration-300 hover:scale-105" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
